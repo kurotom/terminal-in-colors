@@ -1,10 +1,20 @@
 from info_colors import ansi_colors
 
+from typing import Union
+
 
 class ColorTerminal(object):
-    """
-    Class that allows the use of ANSI colors in terminal,
-    using numbers or name of the color.
+    """Class that provides methods to create formatted, colored sentences.
+
+    Allows the use of ANSI and RGB colors in terminal, using numbers,
+    color name, or list of integers to use RGB.
+
+    Once the class is initialized, it allows to use the methods:
+
+    - `paint(string, color, bold, italic, underline, overline, doubleunderline, blink, background, opaque)` - Formats the string using the available options, returns a string.
+    - `find(color, exact)` - Searches by color name, integer, and returns list of matches, optionally, searches for exact matches or returns None.
+    - `clear()` - Clear the string formatting.
+    - `print_all()` - Print all 256 colors.
     """
 
     def __init__(self):
@@ -23,19 +33,33 @@ class ColorTerminal(object):
 
     def paint(
             self,
-            string,
-            color=None,
-            bold=False,
-            italic=False,
-            underline=False,
-            overline=False,
-            doubleunderline=False,
-            blink=False,
-            background=None,
-            opaque=False,
-            ):
-        """
-        Styles the phrase as indicated and returns it.
+            string: str,
+            color: Union[None, list, str, int],
+            bold: bool = False,
+            italic: bool = False,
+            underline: bool = False,
+            overline: bool = False,
+            doubleunderline: bool = False,
+            blink: bool = False [Union[str]],
+            background: None = None [Union[None, list, str, int]],
+            opaque: bool = False,
+            ) -> str:
+        """Styles the phrase as indicated and returns it.
+
+        Args:
+            string (str) : string to add format.
+            color (list|str|int) : represent a color could be a list [R, G, B] of int, string, or integer.
+            bold (bool) : enable bold.
+            italic (bool) : enable italic.
+            underline (bool) : enable underline.
+            overline (bool) : enable overline.
+            doubleunderline (bool) : enable double underline.
+            blink (str) : set blink slow (recomended) or rapid (could not work).
+            background (list|str|int) : set background color, could be a list [R, G, B] of int, string, or integer.
+            opaque (bool) : the color of text is less intense.
+
+        Returns:
+            str : string formatted by options enter.
         """
         frase = ''
         if color is None:
@@ -195,29 +219,30 @@ class ColorTerminal(object):
 
 
 
-string = "UNA FRASE"
-c = ColorTerminal()
-# c.print_all()
-# c.find(100)
-# c.find("red")
-# c.find("green", exact=True)
-# print("====")
-# print(c.paint(string, color=2))
-# print(c.paint(string, color="grey"))
-# print("====")
-# print(c.paint(string, 2, True, False, False, False, False, False))
-# print(c.paint(string, 2, True, True, False, False, False, False))
-# print(c.paint(string, 2, True, True, True, False, False, False))
-# print(c.paint(string, 2, True, True, True, True, False, False))
-# print(c.paint(string, 2, True, True, True, True, True, False))
-# print(c.paint(string, 2, True, True, True, True, True, "slow"))
-# print(c.paint(string, 2, True, True, True, True, True, "rapid"))
-# print(c.paint(string, 2, True, True, True, True, True, 1))
-# print(c.paint(string, 12, background="red", bold=True))
-# print("---")
-# print(c.paint(string, doubleunderline=True))
-# print("---")
-print(c.paint(string, color=[17, 255, 0]))
-print(c.paint(string, color="brown"))
-print(c.paint(string, color=[17, 255, 0, 10]))
-print(c.paint(string, background=[17, 255, 0]))
+# string = "UNA FRASE"
+# c = ColorTerminal()
+# # c.print_all()
+# # c.find(100)
+# # c.find("red")
+# # c.find("green", exact=True)
+# # print("====")
+# # print(c.paint(string, color=2))
+# # print(c.paint(string, color="grey"))
+# # print("====")
+# # print(c.paint(string, 2, True, False, False, False, False, False))
+# # print(c.paint(string, 2, True, True, False, False, False, False))
+# # print(c.paint(string, 2, True, True, True, False, False, False))
+# # print(c.paint(string, 2, True, True, True, True, False, False))
+# # print(c.paint(string, 2, True, True, True, True, True, False))
+# # print(c.paint(string, 2, True, True, True, True, True, "slow"))
+# # print(c.paint(string, 2, True, True, True, True, True, "rapid"))
+# # print(c.paint(string, 2, True, True, True, True, True, 1))
+# # print(c.paint(string, 12, background="red", bold=True))
+# # print("---")
+# # print(c.paint(string, doubleunderline=True))
+# # print("---")
+# print(c.paint(string, italic=True))
+# print(c.paint(string, color=[17, 255, 0]))
+# print(c.paint(string, color="brown"))
+# print(c.paint(string, color=[17, 255, 0, 10]))
+# print(c.paint(string, background=[17, 255, 0]))

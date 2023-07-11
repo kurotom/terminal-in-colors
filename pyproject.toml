@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "terminal-in-color"
+version = "0.1.0"
+description = "Your terminal in colors :D"
+authors = ["kurotom <55354389+kurotom@users.noreply.github.com>"]
+license = "LGPL-3.0-or-later"
+readme = "README.md"
+packages = [{include = "terminal_in_color"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

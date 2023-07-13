@@ -1,0 +1,19 @@
+site_name: Terminal in Colors Docs
+repo_url: https://example.com/
+
+theme:
+    name: "material"
+    highlightjs: true
+    hljs_languages:
+        - python
+    logo: "logo.png"
+
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          path: [terminal_in_colors]
+
+nav:
+  - index.md
+  - how-to-guides.md

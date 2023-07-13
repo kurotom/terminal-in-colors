@@ -1,3 +1,5 @@
+# File support to ColorTerminal
+
 ansi_colors = {
     0: "Black", # START COLOR SYSTEM
     1: "Maroon",

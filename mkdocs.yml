@@ -1,5 +1,6 @@
 site_name: Terminal in Colors Docs
-repo_url: https://example.com/
+repo_url: https://github.com/kurotom/terminal-in-colors.git
+site_url: https://kurotom.github.io/terminal_in_colors/
 
 theme:
     name: "material"

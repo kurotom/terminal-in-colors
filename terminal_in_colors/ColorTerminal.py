@@ -1,4 +1,4 @@
-from info_colors import ansi_colors
+from terminal_in_colors.info_colors import ansi_colors
 
 from typing import Union
 
@@ -258,9 +258,10 @@ class ColorTerminal(object):
 
 
 
-# string = "UNA FRASE"
-# c = ColorTerminal()
-# c.print_all()
+string = "UNA FRASE"
+c = ColorTerminal()
+c.print_all()
+
 # # c.find(100)
 # # c.find("red")
 # # c.find("green", exact=True)

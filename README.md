@@ -33,4 +33,4 @@ print(c.paint(string, color="red", blink="slow"))
 
 # Documentation
 
--> **[]()**
+-> **[https://kurotom.github.io/terminal_in_colors/](https://kurotom.github.io/terminal_in_colors/)**

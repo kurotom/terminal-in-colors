@@ -11,8 +11,11 @@ class ColorTerminal(object):
 
     Once the class is initialized, it allows to use the methods:
 
-    - `paint(string, color, bold, italic, underline, strikethrough, doubleunderline, blink, background, opaque)` - Formats the string using the available options, returns a string.
-    - `find(color, exact)` - Searches by color name, integer, and returns list of matches, optionally, searches for exact matches or returns None.
+    - `paint(string, color, bold, italic, underline, strikethrough,\
+     doubleunderline, blink, background, opaque)` - Formats the string using\
+      the available options, returns a string.
+    - `find(color, exact)` - Searches by color name, integer, and returns list\
+     of matches, optionally, searches for exact matches or returns None.
     - `clear()` - Clear the string formatting.
     - `print_all()` - Print all 256 colors.
     """
@@ -49,14 +52,17 @@ class ColorTerminal(object):
 
         Args:
             string  (str)   :   string to add format.
-            color   (list|str|int)  :   represent a color could be a list [R, G, B] of int, string, or integer.
+            color   (list|str|int)  :   represent a color could be a list\
+             [R, G, B] of int, string, or integer.
             bold    (bool)  :   enable bold.
             italic  (bool)  :   enable italic.
             underline   (bool)    :  enable underline.
             strikethrough    (bool)  :   enable strikethrough.
             doubleunderline     (bool)  :    enable double underline.
-            blink   (str)   :   set blink slow (recomended) or rapid (could not work).
-            background  (list|str|int)  :   set background color, could be a list [R, G, B] of int, string, or integer.
+            blink   (str)   :   set blink slow (recomended) or rapid\
+             (could not work).
+            background  (list|str|int)  :   set background color, could be a\
+             list [R, G, B] of int, string, or integer.
             opaque  (bool)  :   the color of text is less intense.
 
         Returns:
@@ -69,7 +75,14 @@ class ColorTerminal(object):
             type_color = type(color)
             if type_color is list:
                 if len(color) == 3:
-                    frase += self.__set_rgb(color)
+                    # frase += self.__set_rgb(color)
+                    range_rgb = [0 <= i < 256 for i in color]
+                    if all(range_rgb):
+                        frase += self.__set_rgb(color, background=False)
+                    else:
+                        string_warn = "Integers must be between 0 to 255."
+                        msg = self.__error_msg(string_warn)
+                        raise ValueError(msg)
                 else:
                     msg = self.__error_msg("Must be a list of 3 integers.")
                     raise ValueError(msg)
@@ -103,14 +116,16 @@ class ColorTerminal(object):
         """Clear all formats.
 
         Returns
-            str :   string without color to apply on message to clean color format.
+            str :   string without color to apply on message to clean color\
+            format.
         """
         return self.__neutro
 
     def print_all(self) -> str:
         """Print all 256 colors combinations."""
         msg = f'\n\tTerminal_in_Colors - {len(ansi_colors)} colors\n'
-        format_msg = self.paint(string=msg, bold=True, underline=True)
+        print(self.paint(string=msg, bold=True, underline=True))
+        format_msg = ""
         for i in range(0, 256):
             format_msg += f'\x1b[38;5;{i}m' + 'Hi' + self.__neutro + " "
             if i % 20 == 0:
@@ -118,10 +133,12 @@ class ColorTerminal(object):
         print(format_msg)
 
     def __set_color(self, color: str | int) -> str:
-        """Sets the color, must be a string, integer, or list of integers for RGB.
+        """Sets the color, must be a string, integer, or list of integers for\
+        RGB.
 
         Args:
-            color (str|int) : sets the color using the string (name) or integer of the color.
+            color (str|int) : sets the color using the string (name) or\
+            integer of the color.
 
         Returns:
             str : returns the color string to apply in the message.
@@ -142,8 +159,10 @@ class ColorTerminal(object):
         """Set color using RGB.
 
         Args:
-            list_code   (list[int])   :   set RGB color using list of 3 integers.
-            background  (bool)  :   False (default), set this color is to background.
+            list_code   (list[int])   :   set RGB color using list of 3\
+             integers.
+            background  (bool)  :   False (default), set this color is to\
+             background.
 
         Returns:
             str :   return string formatted to color RGB.
@@ -162,7 +181,9 @@ class ColorTerminal(object):
         """Set background color.
 
         Args:
-            color   (str|int|list[int]) :   set background color using string (search for exact color if no exists return background without color), integer or list of integer RGB.
+            color   (str|int|list[int]) :   set background color using string\
+             (search for exact color if no exists return background without\
+              color), integer or list of integer RGB.
 
         Returns:
             str :   return string background formatted.
@@ -171,11 +192,12 @@ class ColorTerminal(object):
             tipo = type(color)
             if tipo is list:
                 if len(color) == 3:
-                    range_rgb = [0 < i < 256 for i in color]
+                    range_rgb = [0 <= i < 256 for i in color]
                     if all(range_rgb):
                         return self.__set_rgb(color, background=True)
                     else:
-                        msg = self.__error_msg("Integers must be between 0 to 255.")
+                        string_warn = "Integers must be between 0 to 255."
+                        msg = self.__error_msg(string_warn)
                         raise ValueError(msg)
                 else:
                     msg = self.__error_msg("Must be a list of 3 integers.")
@@ -191,15 +213,18 @@ class ColorTerminal(object):
                 return f'\x1b[48;5;{clr}m'
 
     def find(self, color: str, exact: bool = False) -> list | None:
-        """Search for color using a string or integer, and return a list of tuples of all matches.
+        """Search for color using a string or integer, and return a list of\
+         tuples of all matches.
         Optional, exact search by string.
 
         Args:
             color   (str|int)  :    color for search, must be sting or integer.
-            exact   (bool)  :   boolean, set search exactly for color enter, if not matches color return None.
+            exact   (bool)  :   boolean, set search exactly for color enter,\
+             if not matches color return None.
 
         Returns:
-            list | None :   return list of tuples with color matches (integer and name of color) or None.
+            list | None :   return list of tuples with color matches (integer\
+             and name of color) or None.
         """
         r = None
         if type(color) is str:
@@ -228,7 +253,8 @@ class ColorTerminal(object):
             color   (str)   :   search using string passed.
 
         Returns:
-            list | None :   return list with a tuple with integer and name of color matches exactly or return None.
+            list | None :   return list with a tuple with integer and name of\
+             color matches exactly or return None.
         """
         result = [
                 (k, v) for (k, v) in ansi_colors.items()
@@ -255,34 +281,3 @@ class ColorTerminal(object):
                     underline=True,
                     doubleunderline=True
                 )
-
-
-
-string = "UNA FRASE"
-c = ColorTerminal()
-c.print_all()
-
-# # c.find(100)
-# # c.find("red")
-# # c.find("green", exact=True)
-# # print("====")
-# # print(c.paint(string, color=2))
-# # print(c.paint(string, color="grey"))
-# # print("====")
-# # print(c.paint(string, 2, True, False, False, False, False, False))
-# # print(c.paint(string, 2, True, True, False, False, False, False))
-# # print(c.paint(string, 2, True, True, True, False, False, False))
-# # print(c.paint(string, 2, True, True, True, True, False, False))
-# # print(c.paint(string, 2, True, True, True, True, True, False))
-# # print(c.paint(string, 2, True, True, True, True, True, "slow"))
-# # print(c.paint(string, 2, True, True, True, True, True, "rapid"))
-# # print(c.paint(string, 2, True, True, True, True, True, 1))
-# # print(c.paint(string, 12, background="red", bold=True))
-# # print("---")
-# # print(c.paint(string, doubleunderline=True))
-# # print("---")
-# print(c.paint(string, italic=True))
-# print(c.paint(string, color=[17, 255, 0]))
-# print(c.paint(string, color="brown"))
-# print(c.paint(string, color=[17, 255, 0, 10]))
-# print(c.paint(string, background=[17, 255, 0]))

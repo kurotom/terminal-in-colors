@@ -1,4 +1,5 @@
-# File support to ColorTerminal
+# File compatible with ColorTerminal,
+# gives you 256 color information.
 
 ansi_colors = {
     0: "Black", # START COLOR SYSTEM

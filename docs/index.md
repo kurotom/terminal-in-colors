@@ -8,6 +8,8 @@ You can set color, bold, italic, single or double underline, strikethrough, blin
 
 You can choose between 256 colors or use RGB.
 
+![](img.png)
+
 <br>
 
 # Table of Contents

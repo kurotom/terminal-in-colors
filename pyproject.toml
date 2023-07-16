@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "terminal-in-colors"
-version = "0.1.0"
+version = "0.1.1"
 description = "Your terminal in colors :D"
 authors = ["kurotom <55354389+kurotom@users.noreply.github.com>"]
 license = "LGPL-3.0-or-later"

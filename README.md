@@ -2,6 +2,8 @@
 
 Give color to your terminal, using 256 colors or RGB, use bold, italic, underline, among others, in a simple and uncomplicated way.
 
+![](img.png)
+
 
 # Instalation
 

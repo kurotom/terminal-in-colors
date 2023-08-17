@@ -1,5 +1,4 @@
 dist/
-*/__pycache__
-terminal_in_colors/__pycache__
 site/
-notas_terminal_in_colors.md
+*/__pycache__
+*/*/__pycache__

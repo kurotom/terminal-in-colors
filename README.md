@@ -42,8 +42,12 @@ print(c.paint(string, color="red", blink="slow"))
 	- background: color by name like "red", by number, or RGB using list of numbers [0, 0, 0].
 	- opaque: True or False.
 
-* `find(color, exact)` - Searches by color name, integer, and returns list of matches, optionally, searches for exact matches or returns None.
-* `clear()` - Clear the string formatting.
+* `find(color, exact)` - Searches by color.
+    - color: name of color, integer, and returns list to RGB.
+    - exact: True or False, optional.
+
+* `clear()` - return string to clear format colors.
+
 * `print_all()` - Print all 256 colors.`
 
 

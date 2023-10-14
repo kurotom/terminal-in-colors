@@ -10,6 +10,9 @@ documentation = "https://kurotom.github.io/terminal_in_colors/"
 keywords = ["colors", "terminal", "color", "console"]
 packages = [{include = "terminal_in_colors"}]
 exclude = ["docs/", "tests/", "dist/", "site"]
+classifiers = [
+	"Topic :: Terminals"
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -26,3 +29,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/kurotom/terminal-in-colors/issues"
+
